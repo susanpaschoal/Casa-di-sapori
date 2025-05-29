@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <title>BobIA | Casa Di Sapori</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background: #fff;
+      color: #000;
+    }
+    header {
+      position: relative;
+      text-align: center;
+
+    }
+    header img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+    }
+    .menu-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 1000;
+    }
+    .nav-menu a {
+      margin: 5px 0;
+      text-decoration: none;
+      color: #000;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+    .section {
+      margin-top: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+        .categoria-titulo {
+      margin: 15px 0 10px;
+      text-align: center;
+      font-weight: bold;
+      border: 1px solid #000;
+      padding: 10px 10px;
+      border-radius: 8px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 370px;  }
+    .prato {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      margin: 20px;
+    }
+    .container-bob {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Espaço entre a imagem e o texto */
+              justify-content: center;
+              margin-top: 30px
+
+    }
+
+   .container-bob img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+#container {
+        width: 90%;
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    textarea[type="text"] {
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        width: 100%; /* Ajusta automaticamente */
+        max-width: 400px;
+    }
+
+    select,
+   #container button {
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+    }
+
+   #container button {
+        background-color: #C69C6D;
+        border: #000 1px solid;
+        padding: 10px;
+    }
+
+    #resposta {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #D0D3D4;
+        border: 1px solid #63666A;
+        text-align: left;
+        display: none;
+        width: 90%;
+        max-width: 500px;
+    }
+
+      </style>
+    </head>
+<body>
+     <header>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="main.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="bobia.html">Recomendações</a>
+    </nav>
+    <img src="img/banner.png" alt="Banner Casa Di Sapori">
+  </header>
+
+    <div class="categoria-titulo">COMBINAÇÕES RECOMENDADAS</div>
+
+  <section class="section">
+    <h2>Conheça o BobIA</h2>
+    <p>BobIA é um assistente digital especializado em harmonização gastronômica. 
+Com inteligência artificial avançada, ele recomenda vinhos e bebidas perfeitas para cada prato, tornando sua experiência no restaurante mais sofisticada e personalizada.</p>
+
+<div class="container-bob">
+    <img src="img/chef.png" alt="BobIA">
+    <h2>BobIA</h2>
+</div>
+
+    <div id="container">
+        <textarea id="pergunta" type="text" placeholder="Digite algo como 'qual bebida combina melhor com capaccio?.'"></textarea>
+        <br><br>
+        <button onclick="gerarResposta()">Gerar Resposta</button>
+        <h3>Resposta da IA:</h3>
+        <div id="resposta"></div>
+    </div>
+  </section>
+    <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>
