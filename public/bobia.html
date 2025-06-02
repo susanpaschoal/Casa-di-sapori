@@ -191,23 +191,21 @@ Com inteligência artificial avançada, ele recomenda vinhos e bebidas perfeitas
     }
 
       
-async function gerarResposta() {
-  const pergunta = document.getElementById('pergunta').value;
+async function gerarResposta(mensagem) {
+    try {
+        const model = chatIA.getGenerativeModel({ model: "gemini-1.5-flash" }); // ou gemini-pro
+        const result = await model.generateContent(mensagem);
+        const response = await result.response;
+        const text = await response.text();
 
-  const response = await fetch('https://casa-di-sapori.onrender.com/perguntar', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ pergunta })
-  });
-
-  const data = await response.json();
-  console.log(data); // 👈 veja o que está vindo da API
-
-  resposta.style.display = 'block';
-  document.getElementById('resposta').innerText = data.resultado ?? 'Erro na resposta';
+        console.log("Resposta:", text);
+        return text;
+    } catch (error) {
+        console.error("Erro ao gerar resposta:", error);
+        throw error;
+    }
 }
+
 
   </script>
 </body>
