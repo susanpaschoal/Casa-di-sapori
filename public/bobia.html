@@ -139,12 +139,16 @@
         margin-top: 20px;
         padding: 10px;
         border-radius: 5px;
-        background-color: #D0D3D4;
+        background-color: transparent;
         border: 1px solid #63666A;
         text-align: left;
         display: none;
         width: 90%;
         max-width: 500px;
+    }
+
+    button{
+      color: #000;
     }
 
       </style>
@@ -176,7 +180,7 @@ Com inteligência artificial avançada, ele recomenda vinhos e bebidas perfeitas
         <textarea id="pergunta" type="text" placeholder="Digite algo como 'qual bebida combina melhor com capaccio?.'"></textarea>
         <br><br>
         <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
+        <h3 style="margin-top: 20px;">Resposta do Bob:</h3>
         <div id="resposta"></div>
     </div>
   </section>
@@ -185,6 +189,24 @@ Com inteligência artificial avançada, ele recomenda vinhos e bebidas perfeitas
       const menu = document.getElementById('navMenu');
       menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
+
+                     async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
   </script>
 </body>
 </html>
