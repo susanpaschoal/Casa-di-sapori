@@ -62,11 +62,13 @@ async function gerarResposta(mensagem) {
 
     try {
         // gerando conteúdo com base na pergunta
-        const modeloIA = chatIA.models.generateContent({
-            model: "gemini-2.0-flash",
-            contents: `Em um frase curta responda: ${mensagem}`
+const model = chatIA.getGenerativeModel({ model: "gemini-1.5-flash" }); // ou gemini-pro
+const result = await model.generateContent(mensagem);
+const response = await result.response;
+const text = response.text();
 
-        });
+return text;
+
         const resposta = (await modeloIA).text;
         const tokens = (await modeloIA).usageMetadata;
 
