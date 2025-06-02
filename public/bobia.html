@@ -191,20 +191,22 @@ Com inteligência artificial avançada, ele recomenda vinhos e bebidas perfeitas
     }
 
       
-async function gerarResposta(mensagem) {
-    try {
-        const model = chatIA.getGenerativeModel({ model: "gemini-1.5-flash" }); // ou gemini-pro
-        const result = await model.generateContent(mensagem);
-        const response = await result.response;
-        const text = await response.text();
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
 
-        console.log("Resposta:", text);
-        return text;
-    } catch (error) {
-        console.error("Erro ao gerar resposta:", error);
-        throw error;
-    }
-}
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
 
 
   </script>

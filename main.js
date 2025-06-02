@@ -1,4 +1,3 @@
-
 // importando os bibliotecas necessárias
 const { GoogleGenAI } = require("@google/genai");
 const express = require("express");
@@ -9,8 +8,7 @@ require("dotenv").config();
 
 // configurando o servidor express
 const app = express();
-const PORTA_SERVIDOR = process.env.PORT || 3000;
-
+const PORTA_SERVIDOR = process.env.PORTA || 3000;
 
 // configurando o gemini (IA)
 const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
@@ -62,13 +60,11 @@ async function gerarResposta(mensagem) {
 
     try {
         // gerando conteúdo com base na pergunta
-const model = chatIA.getGenerativeModel({ model: "gemini-1.5-flash" }); // ou gemini-pro
-const result = await model.generateContent(mensagem);
-const response = await result.response;
-const text = response.text();
+        const modeloIA = chatIA.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: `Em uma frase curta responda: ${mensagem}`
 
-return text;
-
+        });
         const resposta = (await modeloIA).text;
         const tokens = (await modeloIA).usageMetadata;
 
