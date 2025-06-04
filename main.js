@@ -8,7 +8,7 @@ require("dotenv").config();
 
 // configurando o servidor express
 const app = express();
-const PORTA_SERVIDOR = process.env.PORTA || 3333;
+const PORTA_SERVIDOR = process.env.PORTA;
 
 // configurando o gemini (IA)
 const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
@@ -26,8 +26,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// inicializando o servidor (ajuste importante para o Render)
-app.listen(PORTA_SERVIDOR, '0.0.0.0', () => {
+// inicializando o servidor
+app.listen(PORTA_SERVIDOR, () => {
     console.info(
         `
         ######                ###    #    
@@ -39,7 +39,7 @@ app.listen(PORTA_SERVIDOR, '0.0.0.0', () => {
         ######   ####  #####  ### #     # 
         `
     );
-    console.info(`A API BobIA iniciada, acesse http://0.0.0.0:${PORTA_SERVIDOR}`);
+    console.info(`A API BobIA iniciada, acesse http://localhost:${PORTA_SERVIDOR}`);
 });
 
 // rota para receber perguntas e gerar respostas
@@ -57,12 +57,14 @@ app.post("/perguntar", async (req, res) => {
 
 // função para gerar respostas usando o gemini
 async function gerarResposta(mensagem) {
+
     try {
+        // gerando conteúdo com base na pergunta
         const modeloIA = chatIA.models.generateContent({
             model: "gemini-2.0-flash",
-            contents: `Em um parágrafo responda: ${mensagem}`
-        });
+            contents: `Em um paragráfo responda: ${mensagem}`
 
+        });
         const resposta = (await modeloIA).text;
         const tokens = (await modeloIA).usageMetadata;
 
