@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cardápio | Casa Di Sapori</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    html {
+    scroll-behavior: smooth;
+ }
+    body {
+      background: #fff;
+      color: #000;
+    }
+    header {
+      position: relative;
+      text-align: center;
+
+    }
+    header img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+    }
+    .menu-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 1000;
+    }
+    .nav-menu a {
+      margin: 5px 0;
+      text-decoration: none;
+      color: #000;
+    }
+   .categorias {
+    display: flex;
+    overflow-x: auto; /* Torna a barra rolável horizontalmente */
+    white-space: nowrap;
+    gap: 10px; /* Espaço entre os itens */
+    padding: 10px;
+}
+
+.categorias a {
+    text-decoration: none;
+    padding: 10px 10px;
+    background: transparent;
+    border: #000 1px solid;
+    border-radius: 10px;
+    transition: background 0.3s;
+    min-width: 140px;
+    text-align: center;
+    color: #000;
+}
+
+.categorias a:hover {
+    background: #bbb;
+}
+
+
+    .categorias button:hover,
+    .categorias button.active {
+      background-color: #000;
+      color: #fff;
+    }
+    .categoria-titulo {
+      margin: 90px 0 10px;
+      text-align: center;
+      font-weight: bold;
+      border: 1px solid #000;
+      padding: 10px 10px;
+      border-radius: 8px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 370px;  }
+    .prato {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      margin: 20px;
+    }
+    .prato img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .prato-info {
+      flex: 1;
+    }
+    .prato-info h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .prato-info p {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .preco {
+      font-weight: bold;
+      color: #c57a00;
+    }
+
+    .categorias {
+    cursor: grab;
+}
+
+.categorias.active {
+    cursor: grabbing;
+}
+
+.categorias {
+    position: absolute;
+    top: 150px; /* Ajuste esse valor conforme necessário */
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 1000;
+    padding: 10px;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+}
+
+ button{
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="main.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="bobia.html">Recomendações</a>
+    </nav>
+    <img src="img/banner.png" alt="Banner Casa Di Sapori">
+  </header>
+
+<div class="categorias">
+    <a href="#entradas" class="active">ENTRADAS</a>
+    <a href="#saladas">SALADAS</a>
+    <a href="#massas">MASSAS</a>
+    <a href="#pizzas">PIZZAS</a>
+    <a href="#bebidas">BEBIDAS</a>
+    <a href="#sobremesas">SOBREMESAS</a>
+    <!-- Adicione mais categorias aqui -->
+</div>
+ <div id="entradas">
+  <div class="categoria-titulo">ENTRADAS</div>
+
+
+     <div class="prato">
+    <img src="img/Bruschettas.png" alt="Bruschettas">
+    <div class="prato-info">
+      <h3><em>Bruschettas</em></h3>
+      <p>Pão tostado com azeite, alho e tomate. Simples, crocante e delicioso!</p>
+      <div class="preco">29,00</div>
+    </div>
+  </div>
+
+  <div class="prato">
+    <img src="img/Carpaccio.png" alt="Carpaccio">
+    <div class="prato-info">
+      <h3>Carpaccio</h3>
+      <p>Finas fatias de carne temperadas com azeite, rúcula e parmesão.</p>
+      <div class="preco">54,00</div>
+    </div>
+  </div>
+
+  <div class="prato">
+    <img src="img/tabua-de-frios-delicious.png" alt="Queijos e embutidos">
+    <div class="prato-info">
+      <h3><em>Queijos e embutidos</em></h3>
+      <p>Seleção de embutidos e queijos finos. Sabor e tradição italiana!</p>
+      <div class="preco">40,00</div>
+    </div>
+  </div>
+ </div>
+
+   
+   <div id="saladas">
+    <div class="categoria-titulo">SALADAS</div>
+    <div class="prato">
+    <img src="img/Salada César Romana.PNG" alt="Salada César Romana">
+    <div class="prato-info">
+      <h3><em>Salada Caesar Romana</em></h3>
+      <p>Alface romana, frango braseado, bacon, queijo pecorino DOP, tomate seco e molho Caesar.</p>
+      <div class="preco">35,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Salada de Burrata Italiana.png" alt="Salada de Burrata Italiana">
+    <div class="prato-info">
+      <h3><em>Salada de Burrata Italiana</em></h3>
+      <p>Burrata italiana, tomate em pó, grão de bico, beringela temperada e vinagrete de Modena.</p>
+      <div class="preco">42,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Salada Affumicata.png" alt="Salada Affumicata">
+    <div class="prato-info">
+      <h3><em>Salada Affumicata</em></h3>
+      <p>Rúcula, salsicha speck italiana, queijo Scamorza, pêssego, tomate repousado e vinagrete de mel.</p>
+      <div class="preco">38,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Salada Ventresca.png" alt="Salada Ventresca">
+    <div class="prato-info">
+      <h3><em>Salada Ventresca</em></h3>
+      <p>Salada de barriga de atum com ingredientes frescos e tempero especial.</p>
+      <div class="preco">45,00</div>
+    </div>
+</div>
+   </div>
+
+<div id="massas">
+          <div class="categoria-titulo">MASSAS</div>
+
+<div class="prato">
+    <img src="img/lasanha.png" alt="Lasanha à Bolonhesa">
+    <div class="prato-info">
+      <h3><em>Lasanha à Bolonhesa</em></h3>
+      <p>Camadas de massa intercaladas com molho de carne moída, molho de tomate e queijo parmesão gratinado.</p>
+      <div class="preco">50,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Tagliatelle.png" alt="Tagliatelle">
+    <div class="prato-info">
+      <h3><em>Tagliatelle</em></h3>
+      <p>Massa longa e fina, servida com molho cremoso de cogumelos e parmesão.</p>
+      <div class="preco">48,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Spaghetti à Carbonara.png" alt="Spaghetti à Carbonara">
+    <div class="prato-info">
+      <h3><em>Spaghetti à Carbonara</em></h3>
+      <p>Espaguete envolto em um molho cremoso de ovos, queijo pecorino, pancetta e pimenta-do-reino.</p>
+      <div class="preco">45,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Fettuccine Alfredo.png" alt="Fettuccine Alfredo">
+    <div class="prato-info">
+      <h3><em>Fettuccine Alfredo</em></h3>
+      <p>Massa fettuccine servida com um molho cremoso de manteiga e queijo parmesão.</p>
+      <div class="preco">48,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Ravioli ao Pesto.png" alt="Ravioli ao Pesto">
+    <div class="prato-info">
+      <h3><em>Ravioli ao Pesto</em></h3>
+      <p>Massa recheada com queijo e servida com molho pesto de manjericão fresco.</p>
+      <div class="preco">52,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Tortellini Recheado.png" >
+    <div class="prato-info">
+      <h3><em>Tortellini Recheado</em></h3>
+      <p>Massa recheada com carne e queijo, servida com molho de tomate e ervas italianas.</p>
+      <div class="preco">55,00</div>
+    </div>
+</div>
+</div>
+
+<div id="pizzas">
+    <div class="categoria-titulo">PIZZAS</div>
+<div class="prato">
+    <img src="img/Margherita.png" alt="Pizza Margherita">
+    <div class="prato-info">
+      <h3><em>Pizza Margherita</em></h3>
+      <p>Molho de tomate, mussarela fresca, manjericão e azeite de oliva.</p>
+      <div class="preco">45,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Quattro Formaggi.png" alt="Pizza Quattro Formaggi">
+    <div class="prato-info">
+      <h3><em>Pizza Quattro Formaggi</em></h3>
+      <p>Mussarela, gorgonzola, parmesão e provolone sobre uma base de molho branco.</p>
+      <div class="preco">52,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Diavola.png" alt="Pizza Diavola">
+    <div class="prato-info">
+      <h3><em>Pizza Diavola</em></h3>
+      <p>Molho de tomate, mussarela, salame picante e azeite de oliva.</p>
+      <div class="preco">50,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Prosciutto e Funghi.png" alt="Pizza Prosciutto e Funghi">
+    <div class="prato-info">
+      <h3><em>Pizza Prosciutto e Funghi</em></h3>
+      <p>Molho de tomate, mussarela, presunto e cogumelos frescos.</p>
+      <div class="preco">53,00</div>
+    </div>
+</div>
+</div>
+
+      <Div id="bebidas">
+              <div class="categoria-titulo">BEBIDAS</div>
+<div class="prato">
+    <img src="img/prosecco.png" alt="Prosecco">
+    <div class="prato-info">
+      <h3><em>Prosecco</em></h3>
+      <p>Vinho espumante leve e frutado, originário da região de Veneto. Perfeito para acompanhar pratos delicados.</p>
+      <div class="preco">75,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/negroni.png" alt="Negroni">
+    <div class="prato-info">
+      <h3><em>Negroni</em></h3>
+      <p>Drink clássico italiano feito com Campari, vermute e gin. Servido com gelo e uma fatia de laranja.</p>
+      <div class="preco">40,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/limoncello.png" alt="Limoncello">
+    <div class="prato-info">
+      <h3><em>Limoncello</em></h3>
+      <p>Licor de limão típico do sul da Itália, doce e refrescante. Ideal como digestivo após as refeições.</p>
+      <div class="preco">50,00</div>
+    </div>
+</div>
+
+
+
+
+<div class="prato">
+    <img src="img/Capuccino Italiano.png" alt="Capuccino Italiano">
+    <div class="prato-info">
+      <h3><em>Capuccino Italiano</em></h3>
+      <p>Expresso cremoso com leite vaporizado e espuma, tradicionalmente servido no café da manhã.</p>
+      <div class="preco">18,00</div>
+    </div>
+</div>
+
+
+
+
+<div class="prato">
+    <img src="img/suco-maracuja.png" alt="Suco de Maracujá Siciliano">
+    <div class="prato-info">
+      <h3><em>Suco de Maracujá Siciliano</em></h3>
+      <p>Suco refrescante feito com maracujá siciliano, trazendo um equilíbrio perfeito entre acidez e doçura.</p>
+      <div class="preco">22,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Suco de Maçã Verde.png">
+    <div class="prato-info">
+      <h3><em>Suco de Maçã Verde</em></h3>
+      <p>Suco leve e adocicado feito com maçãs verdes frescas, ideal para acompanhar pratos leves.</p>
+      <div class="preco">19,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Suco de Melancia.png" alt="Suco de Melancia">
+    <div class="prato-info">
+      <h3><em>Suco de Melancia</em></h3>
+      <p>Suco natural de melancia, perfeito para dias quentes, trazendo frescor e hidratação.</p>
+      <div class="preco">17,00</div>
+    </div>
+</div>
+      </Div>
+
+      <div id="sobremesas">
+              <div class="categoria-titulo">SOBREMESAS</div>
+
+<div class="prato">
+    <img src="img/tiramisu.png" alt="Tiramisù">
+    <div class="prato-info">
+      <h3><em>Tiramisù</em></h3>
+      <p>Camadas de biscoito champagne embebido em café, creme de mascarpone e cacau em pó. Um clássico irresistível!</p>
+      <div class="preco">30,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Panna Cotta.png" alt="Panna Cotta">
+    <div class="prato-info">
+      <h3><em>Panna Cotta</em></h3>
+      <p>Creme cozido delicado, servido com calda de frutas vermelhas ou caramelo. Leve e sofisticado!</p>
+      <div class="preco">28,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Cannoli Siciliano.PNG" alt="Cannoli Siciliano">
+    <div class="prato-info">
+      <h3><em>Cannoli Siciliano</em></h3>
+      <p>Massa crocante recheada com creme de ricota, baunilha e pedaços de chocolate ou pistache.</p>
+      <div class="preco">35,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/Palha Italiana.png" alt="Palha Italiana">
+    <div class="prato-info">
+      <h3><em>Palha Italiana</em></h3>
+      <p>Doce feito com brigadeiro e biscoito maisena, cortado em quadradinhos e polvilhado com açúcar.</p>
+      <div class="preco">25,00</div>
+    </div>
+</div>
+
+<div class="prato">
+    <img src="img/zeppole.png" alt="Zeppole">
+    <div class="prato-info">
+      <h3><em>Zeppole</em></h3>
+      <p>Rosquinhas italianas recheadas com creme de confeiteiro, fritas ou assadas, polvilhadas com açúcar.</p>
+      <div class="preco">27,00</div>
+    </div>
+</div>
+      </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+
+
+const categorias = document.querySelector('.categorias');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+categorias.addEventListener('mousedown', (e) => {
+    isDown = true;
+    categorias.classList.add('active');
+    startX = e.pageX - categorias.offsetLeft;
+    scrollLeft = categorias.scrollLeft;
+});
+
+categorias.addEventListener('mouseleave', () => {
+    isDown = false;
+    categorias.classList.remove('active');
+});
+
+categorias.addEventListener('mouseup', () => {
+    isDown = false;
+    categorias.classList.remove('active');
+});
+
+categorias.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - categorias.offsetLeft;
+    const walk = (x - startX) * 2; // Ajuste a velocidade do arraste
+    categorias.scrollLeft = scrollLeft - walk;
+});
+  </script>
+
+</body>
+</html>
